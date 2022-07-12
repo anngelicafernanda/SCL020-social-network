@@ -3,6 +3,7 @@
 import { snapshot } from '../../firebase/firestore.js';
 import { signOutSession } from '../../firebase/auth.js';
 
+//--> interp. que contiene el cuadro para publicar y footer //
 export const interpHome = () => {
 	const divHome = document.createElement('div');
 	divHome.className = 'homeContainer';
@@ -35,6 +36,7 @@ export const interpHome = () => {
 	return divHome;
 };
 
+//--> interp. que contiene los post y se repite por cada post que se cree //
 export const interpHomePost = async () => {
 	const divHomePost = document.querySelector('#inyectRootHomePost');
 	snapshot((post) => {
@@ -66,6 +68,7 @@ export const interpHomePost = async () => {
 	});
 };
 
+//--> funcion que escucha el boton casa //
 export const functionDataProfile = () => {
 	const btnProfile = document.querySelector('#home');
 	btnProfile.addEventListener('click', (e) => {
@@ -74,6 +77,7 @@ export const functionDataProfile = () => {
 	});
 };
 
+//--> funcion que escucha el boton claro-oscuro //
 export const functionSwitch = () => {
 	const btnSwitch = document.querySelector('#topicChange');
 	btnSwitch.addEventListener('click', (e) => {
@@ -82,6 +86,7 @@ export const functionSwitch = () => {
 	});
 };
 
+//--> escucha el boton cerrar sesion //
 export const logOutFunction = () => {
 	const logOut = document.querySelector('#logOut');
 	logOut.addEventListener('click', (e) => {

@@ -2,8 +2,7 @@
 
 export const interpRegExitoso = () => {
 	const regExitoso = document.createElement('div');
-	const formRegExitoso =
-		//html
+	const formRegExitoso = //html
 		`
       <div id="regExitoso" class="containerRegExitoso">
         <p class="regExitosoP">Registro de Usuario Creado con Exito</p>

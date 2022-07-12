@@ -13,6 +13,7 @@ import {
 	updateDoc,
 } from './init.js';
 
+// --> funcion que escucha el evento para crear post //
 export const createPost = () => {
 	const formPost = document.querySelector('#form_post');
 	formPost.addEventListener('submit', async (e) => {
@@ -27,7 +28,7 @@ export const createPost = () => {
 		newPost(autor, title, text);
 	});
 };
-
+// --> promesa para crear post //
 export const newPost = (autor, title, text) => {
 	addDoc(collection(db, 'Comentarios'), {
 		Autor: autor,
@@ -43,27 +44,28 @@ export const newPost = (autor, title, text) => {
 		});
 };
 
+// --> funcion para mostrar post en viewHome//
 export const snapshot = (callback) => {
 	const lookPost = query(collection(db, 'Comentarios'));
 	onSnapshot(lookPost, callback);
 };
 
-// const q = query(collection(db, "cities"), where("capital", "==", true));
-
+// --> funcion para mostrar post en viewProfile filtrado segun usuario activo//
 export const snapshotProfile = (callback) => {
 	let autor = '';
-	onAuthStateChanged(auth, (user) => {
+	onAuthStateChanged(auth, (user) => {  //uso el metodo observador para acceder al usuario que se loguea
 		console.log(user);
 		autor = user.email;
 		const lookPostProfile = query(
 			collection(db, 'Comentarios'),
-			where('Autor', '==', autor),
-		);
+			where('Autor', '==', autor), 
+		);// trae los comentadios "donde/where" autor es igual al logueado (accedemos por medio de observador)
 		console.log(autor);
 		onSnapshot(lookPostProfile, callback);
 	});
 };
 
+// --> Promesa para borrar post (viewProfile)//
 export const deletePost = (id) => {
 	deleteDoc(doc(db, 'Comentarios', id))
 		.then(() => {
@@ -74,8 +76,7 @@ export const deletePost = (id) => {
 		});
 };
 
-// editar post
-
+// --> Promesa para editar post (viewProfile)//
 export const updatePost = (id, title, text) => {
 	updateDoc(doc(db, 'Comentarios', id), {
 		Content: text,
