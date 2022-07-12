@@ -1,6 +1,6 @@
 import { deletePost, snapshotProfile, updatePost } from '../../firebase/firestore.js';
 
-//Este archivo es para la vista de tu perfil
+//--> Este archivo es para la vista de tu perfil tenga o no post //
 export const interpProfile = () => {
 	const divProfile = document.createElement('div');
 	divProfile.className = 'profileContainer';
@@ -34,6 +34,7 @@ export const interpProfile = () => {
 	return divProfile;
 };
 
+// --> interp de los contenedores de los post realizados por el usuario logueado //
 export const interpPostProfile = async () => {
 	const divProfilePost = document.querySelector('#containerPostPerfilUser');
 	snapshotProfile((postProfile) => {
@@ -63,6 +64,8 @@ export const interpPostProfile = async () => {
   `;
 			divProfilePost.innerHTML += formHomePost;
 		});
+
+    //--> funcion que escucha el click para borrar post //
 		const btnDeletePost = document.querySelectorAll('.btnDelete');
 		btnDeletePost.forEach((idIterating) => {
 			idIterating.addEventListener('click', (event) => {
@@ -70,6 +73,8 @@ export const interpPostProfile = async () => {
 				// console.log(event.target.getAttribute('id'));
 			});
 		});
+
+    //--> funcion de editar post //
     const editModalContainer = document.querySelector('#edit-modal-container');
     const editOptions = document.querySelectorAll('.btnEditProfile');
     editOptions.forEach((btn) => {
@@ -98,13 +103,16 @@ export const interpPostProfile = async () => {
 	});
 };
 
-
+//--> funcion que inyecta el modal al div vacio //
 export const modalEditAction = () =>{
   const editContainer = document.querySelector('#edit-post'); //llamo a el btn por su id para abrir el modal
   editContainer.innerHTML = editModal(); //paso la funcion del modal(estructura del modal)
 };
+
+//--> interp. del modal //
 export const editModal = () => {
-  const editView = `
+  const editView = //html
+  `
   <div id="edit-modal-container" class="modale hidden-component">
     <div class="modalEdit-container">
     <span class="closeEdit">&times</span>

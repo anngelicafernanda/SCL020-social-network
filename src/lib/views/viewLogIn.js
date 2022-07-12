@@ -1,5 +1,4 @@
-// import { logIn } from '../../firebase/auth.js';
-
+// --> interp. para acceder a la app //
 export const interpLogIn = () => {
 	const divLogIn = document.createElement('div');
 	divLogIn.className = 'loginContainer';

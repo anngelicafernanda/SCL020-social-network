@@ -2,7 +2,7 @@
 
 import { signCreate } from "../../firebase/auth.js";
 
-
+//--> interp. de registro usuario nuevo //
 export const interpSignUp = () => {
 	const divSignUp = document.createElement('div');
 	const formSignUp = //html
@@ -24,6 +24,7 @@ export const interpSignUp = () => {
 	return divSignUp;
 };
 
+//--> funcion que escucha el evento para crear usuario //
 export const createUserEmail = () => {
 	const formRegister = document.querySelector('#form_register');
 	formRegister.addEventListener("submit", (e) => {
