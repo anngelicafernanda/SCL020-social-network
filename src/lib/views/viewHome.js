@@ -1,9 +1,9 @@
 //Este archivo es para la vista principal de la app
 
-import { deletePost, snapshot } from '../../firebase/firestore.js';
+import { snapshot } from '../../firebase/firestore.js';
 import { signOutSession } from '../../firebase/auth.js';
-import { interpPostProfile } from './viewProfile.js';
 
+//--> interp. que contiene el cuadro para publicar y footer //
 export const interpHome = () => {
 	const divHome = document.createElement('div');
 	divHome.className = 'homeContainer';
@@ -36,6 +36,7 @@ export const interpHome = () => {
 	return divHome;
 };
 
+//--> interp. que contiene los post y se repite por cada post que se cree //
 export const interpHomePost = async () => {
 	const divHomePost = document.querySelector('#inyectRootHomePost');
 	snapshot((post) => {
@@ -44,8 +45,7 @@ export const interpHomePost = async () => {
 			const post = doc.data();
 			console.log(post);
 			// console.log('Prueba Marianny', doc.id);
-			const formHomePost =
-				//html
+			const formHomePost = //html
 				`
     <div id="rootHomePost" class="containerRootHomePost" data-postid="${doc.id}">
       <div class="containerPostPublicado">
@@ -53,6 +53,7 @@ export const interpHomePost = async () => {
           <img class="" src="./images/perfil.png" alt="perfil" height=auto width="40"/>
           <h3 class="textTittle">${post.Autor}</h3>
         </div>
+        <p type="text" id="forTitlePosting" class="boxtxtTitle" rows="5">${post.Title}</p>
         <p type="text" id="forPosting" class="boxtxt" rows="5">${post.Content}</p>
         <div class="containerlike" id="Post" >
           <span id="${doc.id}" class="count"></span>
@@ -67,6 +68,7 @@ export const interpHomePost = async () => {
 	});
 };
 
+//--> funcion que escucha el boton casa //
 export const functionDataProfile = () => {
 	const btnProfile = document.querySelector('#home');
 	btnProfile.addEventListener('click', (e) => {
@@ -75,6 +77,7 @@ export const functionDataProfile = () => {
 	});
 };
 
+//--> funcion que escucha el boton claro-oscuro //
 export const functionSwitch = () => {
 	const btnSwitch = document.querySelector('#topicChange');
 	btnSwitch.addEventListener('click', (e) => {
@@ -83,6 +86,7 @@ export const functionSwitch = () => {
 	});
 };
 
+//--> escucha el boton cerrar sesion //
 export const logOutFunction = () => {
 	const logOut = document.querySelector('#logOut');
 	logOut.addEventListener('click', (e) => {

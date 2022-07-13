@@ -9,8 +9,7 @@ import {
 	onAuthStateChanged,
 } from './init.js';
 
-//Funcion que escucha evento de INGRESO correo y contraseña
-
+//Funcion y promesa que escucha evento de INGRESO correo y contraseña
 export const signInFunction = () => {
 	//funcion llamada en el router cuando se inicializa
 	const signInForm = document.querySelector('#form_login');
@@ -37,8 +36,7 @@ export const signInFunction = () => {
 	});
 };
 
-//Función CREAR usuario con email y contraseña
-
+//Función de promesa para CREAR usuario con email y contraseña //
 export const signCreate = (email, password) => {
 	//esta es la forma que mas se usa...
 	createUserWithEmailAndPassword(auth, email, password)
@@ -56,9 +54,7 @@ export const signCreate = (email, password) => {
 		});
 };
 
-//ACCESO CON GOOGLE
-//Login Gmail
-
+//--> funcion que abre el popUp al acceder con Google //
 export const accessGoogle = () => {
 	signInWithPopup(auth, provider)
 		.then((result) => {
@@ -83,6 +79,7 @@ export const accessGoogle = () => {
 		});
 };
 
+//--> funcion que escucha el click para acceder con Google //
 export const signInFunctionGoogle = () => {
 	//funcion llamada en el router cuando se inicializa
 	const signInGoogle = document.querySelector('#button_google');
@@ -92,8 +89,7 @@ export const signInFunctionGoogle = () => {
 	});
 };
 
-//Cerrar Sesion
-
+//--> Cerrar Sesion //
 export const signOutSession = () => {
 	signOut(auth)
 		.then(() => {
@@ -105,30 +101,3 @@ export const signOutSession = () => {
 			// An error happened.
 		});
 };
-
-//Observador
-export const authenticationObserver = (hash) => {
-	onAuthStateChanged(auth, (user) => {
-		if (user) {
-			// User is signed in, see docs for a list of available properties
-			// https://firebase.google.com/docs/reference/js/firebase.User
-			const uid = user.uid;
-			console.log(uid);
-			// ...
-		} else {
-			// User is signed out
-			// ...
-		}
-	});
-};
-
-// const gettingActiveUser = ( hash) => {
-//   onAuthStateChanged(auth, (user) => {
-//     console.log(user)
-//     if (user) {
-//       changeRoute(hash);
-//     } else {
-//       changeRoute('/#home');
-//     }
-//   });
-// }
